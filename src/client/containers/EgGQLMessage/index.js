@@ -20,7 +20,7 @@ import { graphql } from 'react-apollo';
 // GraphQL queries.  Looking at this file demonstrates how to import fragments.
 // Webpack will compile this into inline GraphQL for us, so we can pass the
 // query to components using the @graphql decorator
-import allMessages from 'src/graphql/queries/all_messages.gql';
+import message from './message.gql';
 
 // ----------------------
 
@@ -28,7 +28,7 @@ import allMessages from 'src/graphql/queries/all_messages.gql';
 // `react-apollo`'s `graphql` HOC/decorator and pass in the query that this
 // component requires.   Note: This is not to be confused with the `graphql`
 // lib, which is used on the server-side to initially define the schema
-@graphql(allMessages)
+@graphql(message)
 export default class GraphQLMessage extends React.PureComponent {
   static propTypes = {
     data: PropTypes.shape({
@@ -52,14 +52,14 @@ export default class GraphQLMessage extends React.PureComponent {
     // Since we're dealing with async GraphQL data, we defend against the
     // data not yet being loaded by checking to see that we have the `message`
     // key on our returned object
-    const message = data.message && data.message.text;
+    const messageText = data.message && data.message.text;
 
     // Apollo will tell us whether we're still loading.  We can also use this
     // check to ensure we have a fully returned response
     const isLoading = data.loading ? 'yes' : 'nope';
     return (
       <div>
-        <h2>Message from GraphQL server: <em>{message}</em></h2>
+        <h2>Message from GraphQL server: <em>{messageText}</em></h2>
         <h2>Currently loading?: {isLoading}</h2>
       </div>
     );

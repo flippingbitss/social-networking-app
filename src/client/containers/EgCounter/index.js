@@ -1,19 +1,15 @@
-// Component that demonstrates using a part of the Redux store
-// outside of Apollo.  We can use config.addReducer(key, reducer) in `src/app.js`
-// to add custom Redux reducers
-
-// ----------------------
-// IMPORTS
-
-/* NPM */
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 // HOC/decorator to listen to Redux store state
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
+import { createReducer } from "src/utils";
+import counter from "./reducers";
 
 // ----------------------
+createReducer("counter", counter, { count: 0 });
 
+// ----------------------
 // @connect accepts a function that takes the full Redux state, and then
 // returns the portion of state that our component cares about.  In this example,
 // we're listening to `state.counter`, which we can show inside the component
@@ -21,15 +17,15 @@ import { connect } from 'react-redux';
 export default class ReduxCounter extends React.PureComponent {
   static propTypes = {
     counter: PropTypes.shape({
-      count: PropTypes.number.isRequired,
-    }),
+      count: PropTypes.number.isRequired
+    })
   };
 
   static defaultProps = {
     counter: {
-      count: 0,
-    },
-  }
+      count: 0
+    }
+  };
 
   // Trigger the `INCREMENT_COUNTER` action in Redux, to add 1 to the total.
   // Note: by using the `= () {}` format, we're implicitly binding the component
@@ -37,9 +33,9 @@ export default class ReduxCounter extends React.PureComponent {
   // passed in as a prop
   triggerIncrement = () => {
     this.props.dispatch({
-      type: 'INCREMENT_COUNTER',
+      type: "INCREMENT_COUNTER"
     });
-  }
+  };
 
   render() {
     const { count } = this.props.counter;

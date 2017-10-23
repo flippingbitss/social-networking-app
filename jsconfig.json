@@ -1,7 +1,8 @@
 {
     "compilerOptions": {
         "target": "es6",
-        "experimentalDecorators": true
+        "experimentalDecorators": true,
+        "baseUrl": "./"
     },
     "exclude": [
         "dist",

@@ -23,6 +23,9 @@ module.exports = {
     'compat',
   ],
   rules: {
+    "quotes": ["off", "double"],
+    "comma-dangle": ["off", "never"],
+    "space-before-function-paren" : ["off"],
     'arrow-parens': ['error', 'as-needed'],
     'react/forbid-prop-types': [1, { forbid: ['any']} ],
     'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
