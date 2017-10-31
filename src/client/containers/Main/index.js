@@ -47,6 +47,7 @@ import { Redirect } from "kit/lib/routing";
 import { Page, WhenNotFound } from "src/client/routes";
 
 import Home from "src/client/containers/Home";
+import SearchFriends from "src/client/containers/SearchFriends";
 
 // ----------------------
 
@@ -58,12 +59,19 @@ export default () => (
         {
           name: "description",
           content: "ReactQL starter kit app"
+
         }
-      ]} />
+      ]}
+      link={[{
+        href: "https://fonts.googleapis.com/icon?family=Material+Icons",
+        rel: "stylesheet"
+      }]}
+    />
 
     <Switch>
       <Route exact path="/" component={Home} />
       <Route path="/page/:name" component={Page} />
+      <Route path="/search" component={SearchFriends} />
       <Redirect from="/old/path" to="/new/path" />
       <Route component={WhenNotFound} />
     </Switch>
@@ -73,6 +81,7 @@ export default () => (
       <li><Link to="/">Home</Link></li>
       <li><Link to="/page/about">About</Link></li>
       <li><Link to="/page/contact">Contact</Link></li>
+      <li><Link to="/search">Search</Link></li>
       <li><Link to="/old/path">Redirect from /old/path &#8594; /new/path</Link></li>
     </ul>
     {/* 
