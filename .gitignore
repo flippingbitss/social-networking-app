@@ -44,3 +44,4 @@ dist
 
 # Secrets
 secrets.js
+package-lock.json
