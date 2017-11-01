@@ -83,6 +83,7 @@
     "ip": "^1.1.5",
     "isomorphic-fetch": "^2.2.1",
     "kcors": "^2.2.1",
+    "knex": "^0.13.0",
     "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.0",
     "koa-helmet": "^3.2.0",
