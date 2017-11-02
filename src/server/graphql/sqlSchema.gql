@@ -1,0 +1,21 @@
+type User {
+  id: ID!
+  firstName: String
+  lastName: String
+  age: Int
+  email: String!
+  about: String
+  createdAt: Float!
+  tags(limit: Int = 20, offset: Int = 0): [Tag!]!
+  followers(limit: Int = 50, offset: Int = 0): [User!]!
+  following(limit: Int = 50, offset: Int = 0): [User!]!
+  followerCount: Int!
+  followingCount: Int!
+}
+
+type Tag {
+  id: ID!
+  title: String!
+  createdOn: Float!
+  createdBy: User!
+}

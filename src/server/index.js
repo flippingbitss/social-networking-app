@@ -1,4 +1,4 @@
-export const configureServer = (config) => {
+export const configureServer = config => {
   /* SSL */
 
   // By default, the Koa web server runs on a plain HTTP server. However,
@@ -17,7 +17,7 @@ export const configureServer = (config) => {
   /*
     Uncomment the next two lines to enable SSL!
   */
-  const cert = require('./cert/self_signed');
+  const cert = require("./cert/self_signed");
   config.enableSSL({ key: cert.key, cert: cert.cert });
 
   // If wanted, you could also run an *SSL-only* server by uncommenting:
@@ -32,13 +32,13 @@ export const configureServer = (config) => {
   // Pass in the schema to use for our internal GraphQL server.  Note we're
   // doing this inside a `SERVER` block to avoid importing a potentially large
   // file, which would then inflate our client bundle unnecessarily
-  config.setGraphQLSchema(require('./graphql/schema').default);
+  config.setGraphQLSchema(require("./graphql/schema").default);
 
   /* CUSTOM ROUTES */
 
   // We can add custom routes to the web server easily, by using
   // `config.add<Get|Post|Put|Patch>Route()`.  Note:  These are server routes only.
-  config.addGetRoute('/test', async ctx => {
+  config.addGetRoute("/test", async ctx => {
     // For demo purposes, let's get a JSON dump of the current Redux state
     // to see that we can expect its contents
     const stateDump = JSON.stringify(ctx.store.getState());
@@ -90,8 +90,8 @@ export const configureServer = (config) => {
     // Mimic the default behaviour with an overriden message, so we know it's
     // working
     // eslint-disable-next-line no-console
-    console.log('Error: ', e.message);
-    ctx.body = 'Some kind of error. Check your source code.';
+    console.log("Error: ", e.message);
+    ctx.body = "Some kind of error. Check your source code.";
   });
 
   /* CUSTOM KOA APP INSTANTIATION */
@@ -104,16 +104,16 @@ export const configureServer = (config) => {
     // prototype (that per-request `ctx` extends) that can be
     // used in the middleware below, to set a `Powered-By` header.
     // eslint-disable-next-line no-param-reassign
-    app.context.engine = 'ReactQL';
+    app.context.engine = "ReactQL";
 
     // We'll also add a generic error handler, that prints out to the console.
     // Note: This is a 'lower-level' than `config.setErrorHandler()` because
     // it's not middleware -- it's for errors that happen at the server level
-    app.on('error', e => {
+    app.on("error", e => {
       // This function should never show up, because `config.setErrorHandler()`
       // is already catching errors -- but just an FYI for what you might do.
       // eslint-disable-next-line no-console
-      console.error('Server error:', e);
+      console.error("Server error:", e);
     });
   });
 
@@ -124,17 +124,15 @@ export const configureServer = (config) => {
   // if we want to avoid the React handler until certain conditions
   config.addMiddleware(async (ctx, next) => {
     // Let's add a custom header so we can see middleware in action
-    ctx.set('Powered-By', ctx.engine); // <-- `ctx.engine` srt above!
+    ctx.set("Powered-By", ctx.engine); // <-- `ctx.engine` srt above!
 
     // For the fun of it, let's demonstrate that we can fire Redux actions
     // and it'll manipulate the state on the server side!  View the SSR version
     // to see that the counter is now 1 and has been passed down the wire
-    ctx.store.dispatch({ type: 'INCREMENT_COUNTER' });
+    ctx.store.dispatch({ type: "INCREMENT_COUNTER" });
 
     // Always return `next()`, otherwise the request won't 'pass' to the next
     // middleware in the stack (likely, the React handler)
     return next();
   });
-
-
-}
+};
