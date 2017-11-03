@@ -2,14 +2,18 @@
 
 # union SearchResult = User | Tag
 # TODO remove temp message query
-type Message {
-  text: String!
-}
+# type Message {
+#   text: String!
+# }
 
 type Query {
   searchUsers(query: String!): [User!]!
   searchTags(query: String!): [Tag!]!
   user(userId: ID!): User
   currentUser: User # Return the currently logged in user, or null if nobody is logged in
-  message: Message!
+  message: String
+}
+
+schema {
+  query: Query
 }

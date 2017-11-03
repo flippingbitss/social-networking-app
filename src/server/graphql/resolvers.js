@@ -1,15 +1,20 @@
+import { clamp } from "src/utils";
+import db from "./context";
+
 const rootResolvers = {
   Query: {
-    user(root, { userId }, context) {
-      return context.Users.getById(userId);
+    user(root, { userId }) {
+      return db.Users.getUserById(userId);
     },
 
-    searchUsers(root, { query }, context) {
-      return context.Users.search(query);
+    searchUsers(root, { query }) {
+      if (!query && !query.trim()) throw new Error("search string cannot be empty");
+      return db.Users.searchUsers(query);
     },
 
-    searchTags(root, { query }, context) {
-      return context.Tags.search(query);
+    searchTags(root, { query }) {
+      if (!query && !query.trim()) throw new Error("search string cannot be empty");
+      return db.Tags.searchTags(query);
     },
 
     currentUser(root, args, context) {
@@ -17,29 +22,27 @@ const rootResolvers = {
     },
 
     message() {
-      return {
-        text: `Hello from the GraphQL server @ ${new Date()}`
-      };
+      return `Hello from the GraphQL server @ ${new Date()}`;
     }
   },
 
   User: {
-    followers({ id }, { offset, limit }, context) {
-      const protectedLimit = Math.max(1, Math.min(limit, 20));
-      return context.Users.getFollowersOfUser(id, offset, protectedLimit);
+    followers({ id }, { offset, limit }) {
+      const protectedLimit = clamp(limit, 1, 20);
+      return db.Users.getFollowersOfUser(id, offset, protectedLimit);
     },
-    following({ id }, { offset, limit }, context) {
-      const protectedLimit = Math.max(1, Math.min(limit, 20));
-      return context.Users.getFollowingOfUser(id, offset, protectedLimit);
+    following({ id }, { offset, limit }) {
+      const protectedLimit = clamp(limit, 1, 20);
+      return db.Users.getFollowingOfUser(id, offset, protectedLimit);
     },
-    tags({ id }, { offset, limit }, context) {
-      const protectedLimit = Math.max(1, Math.min(limit, 20));
-      return context.Tags.getTagsForUser(id, offset, protectedLimit);
+    tags({ id }, { offset, limit }) {
+      const protectedLimit = clamp(limit, 1, 20);
+      return db.Tags.getTagsForUser(id, offset, protectedLimit);
     }
   },
   Tag: {
-    createdBy({ id }, _, context) {
-      return context.Users.getUserById(id);
+    createdBy({ createdBy }) {
+      return db.Users.getUserById(createdBy);
     }
   }
 };

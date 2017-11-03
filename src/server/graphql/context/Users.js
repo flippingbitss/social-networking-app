@@ -21,27 +21,39 @@ export default class Users {
     }
   }
 
-  async followers(userId, offset, limit) {
-    const [result] = await knex(USER_TABLE)
-      .innerJoin(USER_USER_TABLE, `${USER_TABLE}.id`, `${USER_USER_TABLE}.following`)
+  async getFollowersOfUser(userId, offset, limit) {
+    const alias = "t2";
+    const query = knex(USER_TABLE)
+      .leftJoin(
+        knex.select(["follower", "following"]).from(USER_USER_TABLE).as(alias),
+        `${USER_TABLE}.id`,
+        `${alias}.follower`
+      )
+      .where({ [`following`]: userId })
       .limit(limit)
       .offset(offset);
-    return result;
+
+    return query;
   }
 
-  async following(userId, offset, limit) {
-    const [result] = await knex(USER_TABLE)
-      .innerJoin(USER_USER_TABLE, `${USER_TABLE}.id`, `${USER_USER_TABLE}.follower`)
+  async getFollowingOfUser(userId, offset, limit) {
+    const alias = "t2";
+    return knex(USER_TABLE)
+      .leftJoin(
+        knex.select(["follower", "following"]).from(USER_USER_TABLE).as(alias),
+        `${USER_TABLE}.id`,
+        `${alias}.following`
+      )
+      .where({ [`follower`]: userId })
       .limit(limit)
       .offset(offset);
-    return result;
   }
 
   async searchUsers(query, offset, limit) {
-    const [result] = await knex
+    const result = await knex
       .select("*")
       .from(USER_TABLE)
-      .whereRaw(`MATCH (firstname,lastname,email) AGAINST ('(${query.trim()}*)' IN BOOLEAN MODE);`)
+      .whereRaw(`MATCH (firstname,lastname,email) AGAINST ('(${query.trim()}*)' IN BOOLEAN MODE)`)
       .limit(limit)
       .offset(offset);
     return result;
