@@ -27,6 +27,7 @@ module.exports = {
     "comma-dangle": ["off", "never"],
     "space-before-function-paren" : ["off"],
     'arrow-parens': ['error', 'as-needed'],
+    'class-methods-use-this': ["off"],
     'react/forbid-prop-types': [1, { forbid: ['any']} ],
     'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
     'react/prefer-stateless-function': [2, { ignorePureComponents: true }],
