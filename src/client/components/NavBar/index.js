@@ -6,7 +6,9 @@ import Toolbar from "material-ui/Toolbar";
 import Text from "material-ui/Typography";
 import Button from "material-ui/Button";
 import IconButton from "material-ui/IconButton";
-import MenuIcon from "material-ui/Menu";
+import TextField from "material-ui/TextField";
+import Icon from 'material-ui/Icon'
+
 
 const styles = theme => ({
   root: {
@@ -32,14 +34,19 @@ const NavBar = props => {
         <Toolbar>
           <IconButton
             className={classes.menuButton}
-            color="contrast"
             aria-label="Menu">
-            <MenuIcon />
+            <Icon color="contrast">menu</Icon>
           </IconButton>
           <Text type="title" color="inherit" className={classes.flex}>
             My App Bar
           </Text>
-          <Button color="contrast">Login</Button>
+          <Icon color="contrast">search</Icon>
+          <TextField
+            autoFocus={true}
+            value={"my test search "}
+          />
+          <Button color="contrast">Logout</Button>
+
         </Toolbar>
       </AppBar>
     </div>
