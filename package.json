@@ -91,7 +91,7 @@
     "koa-router": "^7.2.1",
     "koa-send": "^4.1.0",
     "koa-sslify": "^2.1.2",
-    "material-ui": "^1.0.0-beta.17",
+    "material-ui": "^1.0.0-beta.20",
     "microseconds": "^0.1.0",
     "mysql": "^2.15.0",
     "prop-types": "^15.5.10",
