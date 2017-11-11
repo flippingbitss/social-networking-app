@@ -26,6 +26,13 @@ const rootResolvers = {
     }
   },
 
+  Mutation: {
+    createUser(root, { firstName, lastName, email, age }) {
+      return db.Users.addNewUser(
+        firstName, lastName, email, age);
+    }
+  },
+
   User: {
     followers({ id }, { offset, limit }) {
       const protectedLimit = clamp(limit, 1, 20);

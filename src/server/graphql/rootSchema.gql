@@ -6,6 +6,13 @@
 #   text: String!
 # }
 
+input UserInfo {
+    firstName: String!
+    lastName: String!
+    age: Int
+    email: String!
+  }
+
 type Query {
   searchUsers(query: String!): [User!]!
   searchTags(query: String!): [Tag!]!
@@ -14,6 +21,11 @@ type Query {
   message: String
 }
 
+type Mutation {
+  createUser(input: UserInfo!): User
+}
+
 schema {
   query: Query
+  mutation: Mutation
 }
