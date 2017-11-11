@@ -7,6 +7,10 @@ const rootResolvers = {
       return db.Users.getUserById(userId);
     },
 
+    allUsers(root) {
+      return db.Users.getAllUsers();   
+    },
+
     searchUsers(root, { query }) {
       if (!query && !query.trim()) throw new Error("search string cannot be empty");
       return db.Users.searchUsers(query);
@@ -27,9 +31,17 @@ const rootResolvers = {
   },
 
   Mutation: {
-    createUser(root, { firstName, lastName, email, age }) {
-      return db.Users.addNewUser(
-        firstName, lastName, email, age);
+    createUser(root, {input}) {
+      // console.log(input);
+      return db.Users.addNewUser(input);
+    },
+
+    deleteUser(root, { userId }) {
+      return db.Users.deleteUser(userId);
+    },
+    
+    deleteAllUsers(root) {
+      return db.Users.deleteAllUsers();
     }
   },
 

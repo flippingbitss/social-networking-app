@@ -17,12 +17,15 @@ type Query {
   searchUsers(query: String!): [User!]!
   searchTags(query: String!): [Tag!]!
   user(userId: ID!): User
+  allUsers: [User!]!
   currentUser: User # Return the currently logged in user, or null if nobody is logged in
   message: String
 }
 
 type Mutation {
-  createUser(input: UserInfo!): User
+  createUser(input: UserInfo!): User!
+  deleteUser(userId: ID!): Int!
+  deleteAllUsers: Int!
 }
 
 schema {

@@ -21,6 +21,19 @@ class CreateUser extends React.Component {
                             className={props.textField}
                             margin="normal"
                         /><br />
+                        <TextField
+                            id="lastName"
+                            label="Last Name"
+                            className={props.textField}
+                            margin="normal"
+                        /><br />
+                        <TextField
+                            id="email"
+                            label="Email Address"
+                            className={props.textField}
+                            margin="normal"
+                        /><br />
+                        
 
 
 
@@ -31,5 +44,16 @@ class CreateUser extends React.Component {
     }
 }
 
+
+// query
+// mutation {
+//     createUser(input: {firstName: "Johnnnn", lastName: "Doeeeee", email: "pleasework7@work.com"}) {
+//       id
+//       firstName
+//       lastName
+//       email
+//     }
+//   }
+  
 
 export default CreateUser;
