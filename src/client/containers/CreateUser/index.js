@@ -68,7 +68,6 @@ class CreateUser extends React.Component {
     }
 
     handleClick = () => {
-        console.log('The link was clicked.' + this.state.email);
         this.props.mutate({
             variables: {
                 input: {
