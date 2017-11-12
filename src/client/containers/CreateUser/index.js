@@ -15,9 +15,9 @@ class CreateUser extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            firstName: '',
-            lastName: '',
-            email: '',
+            firstName: null,
+            lastName: null,
+            email: null,
         };
     }
 
@@ -63,7 +63,7 @@ class CreateUser extends React.Component {
 
     updateInputValue(event) {
         this.setState({
-            [event.target.id]: event.target.value
+            [event.target.id]: event.target.value != '' ? event.target.value : null
         });
     }
 
@@ -77,7 +77,9 @@ class CreateUser extends React.Component {
                     email: this.state.email,
                 }
             }
-        })
+        }).catch(err => {
+            console.log(err);
+        });
     }
 }
 

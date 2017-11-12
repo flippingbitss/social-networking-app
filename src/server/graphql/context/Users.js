@@ -14,12 +14,17 @@ export default class Users {
 
   async addNewUser(input) {
     // console.log(input);
-    try {
+    // try {
       const result = await knex(USER_TABLE).insert(input);
       return this.getUserById(result);
-    } catch (e) {
-      throw new Error(`Unable to add new user - ${e}`);
-    }
+    // } catch (e) {
+    //   console.log (e.code);
+    //   throw (e);
+    // }
+    // Ed:
+    // the problem here is that Apollo will catch the error first,
+    // and it will eat most of the information
+    // and return a simplified error object that doesn't contain properties like "code"
   }
 
   async deleteUser(id) {
