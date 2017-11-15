@@ -78,8 +78,9 @@ class CreateUser extends React.Component {
 
     updateInputValue(event) {
         this.setState({
-            [event.target.id]: event.target.value.trim() != '' ? event.target.value.trim() : null
+            [event.target.id]: event.target.value.trim() ? event.target.value.trim() : null
         });
+        console.log(this.state);        
     }
 
     handleClick = () => {
