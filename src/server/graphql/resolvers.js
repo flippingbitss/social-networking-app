@@ -7,8 +7,8 @@ const rootResolvers = {
       return db.Users.getUserById(userId);
     },
 
-    allUsers(root) {
-      return db.Users.getAllUsers();   
+    allUsers() {
+      return db.Users.getAllUsers();
     },
 
     searchUsers(root, { query }) {
@@ -26,12 +26,12 @@ const rootResolvers = {
     },
 
     message() {
-      return `Hello from the GraphQL server @ ${new Date()}`;
+      return { text: `Hello from the GraphQL server @ ${new Date()}` };
     }
   },
 
   Mutation: {
-    createUser(root, {input}) {
+    createUser(root, { input }) {
       // console.log(input);
       return db.Users.addNewUser(input);
     },
@@ -39,8 +39,8 @@ const rootResolvers = {
     deleteUser(root, { userId }) {
       return db.Users.deleteUser(userId);
     },
-    
-    deleteAllUsers(root) {
+
+    deleteAllUsers() {
       return db.Users.deleteAllUsers();
     }
   },

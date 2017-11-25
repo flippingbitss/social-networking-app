@@ -2,9 +2,9 @@
 
 # union SearchResult = User | Tag
 # TODO remove temp message query
-# type Message {
-#   text: String!
-# }
+type Message {
+  text: String!
+}
 
 input UserInfo {
     firstName: String!
@@ -19,7 +19,7 @@ type Query {
   user(userId: ID!): User
   allUsers: [User!]!
   currentUser: User # Return the currently logged in user, or null if nobody is logged in
-  message: String
+  message: Message
 }
 
 type Mutation {
