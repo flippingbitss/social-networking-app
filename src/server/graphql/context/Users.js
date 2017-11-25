@@ -3,21 +3,46 @@ import knex from "./connector";
 
 export default class Users {
   async getUserById(id) {
-    const [rows] = await knex(USER_TABLE).where({ id });
+    const row = await knex(USER_TABLE).where({ id }).first();
+    return row;
+  }
+
+  async getAllUsers() {
+    const rows = await knex(USER_TABLE);
     return rows;
   }
 
-  async addNewUser(firstName, lastName, email, age) {
+  async addNewUser(input) {
+    // console.log(input);
     try {
-      const [result] = await knex(USER_TABLE).insert({
-        firstName,
-        lastName,
-        age,
-        email
-      });
+      const result = await knex(USER_TABLE).insert(input);
+      return this.getUserById(result);
+    } catch (e) {
+      console.log (e);
+      throw (e);
+    }
+    // Ed:
+    // the problem here is that Apollo will catch the error first,
+    // and it will eat most of the information
+    // and return a simplified error object that doesn't contain properties like "code"
+  }
+
+  async deleteUser(id) {
+    // console.log(id);
+    try {
+      const result = await knex(USER_TABLE).where({ id }).del();
       return result;
     } catch (e) {
-      throw new Error(`Unable to add new user - ${e}`);
+      throw new Error(`Unable to delete user - ${e}`);
+    }
+  }
+
+  async deleteAllUsers() {
+    try {
+      const result = await knex(USER_TABLE).del();
+      return result;
+    } catch (e) {
+      throw new Error(`Unable to delete all users - ${e}`);
     }
   }
 
