@@ -26,7 +26,7 @@ function FriendListItem(props) {
         />
         <CardContent>
           <Typography type="headline" component="h2">
-            My Friend 
+            Jane Doe 
           </Typography>
           <Typography component="p">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus, minus.
