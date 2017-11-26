@@ -41,3 +41,7 @@ jspm_packages
 
 # Distribution
 dist
+
+# Secrets
+secrets.js
+package-lock.json

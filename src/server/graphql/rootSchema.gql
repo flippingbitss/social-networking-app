@@ -1,0 +1,34 @@
+#import "./sqlSchema.gql"
+
+# union SearchResult = User | Tag
+# TODO remove temp message query
+type Message {
+  text: String!
+}
+
+input UserInfo {
+    firstName: String!
+    lastName: String!
+    age: Int
+    email: String!
+  }
+
+type Query {
+  searchUsers(query: String!): [User!]!
+  searchTags(query: String!): [Tag!]!
+  user(userId: ID!): User
+  allUsers: [User!]!
+  currentUser: User # Return the currently logged in user, or null if nobody is logged in
+  message: Message
+}
+
+type Mutation {
+  createUser(input: UserInfo!): User!
+  deleteUser(userId: ID!): Int!
+  deleteAllUsers: Int!
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+}
