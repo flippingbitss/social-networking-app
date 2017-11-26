@@ -1,17 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
-import Button from 'material-ui/Button';
-import Typography from 'material-ui/Typography';
+import React from "react";
+import PropTypes from "prop-types";
+import { withStyles } from "material-ui/styles";
+import Card, { CardActions, CardContent, CardMedia } from "material-ui/Card";
+import Button from "material-ui/Button";
+import Typography from "material-ui/Typography";
 
 const styles = {
   card: {
-    maxWidth: 345,
+    maxWidth: 345
   },
   media: {
-    height: 200,
-  },
+    height: 200
+  }
 };
 
 function FriendListItem(props) {
@@ -26,18 +26,19 @@ function FriendListItem(props) {
         />
         <CardContent>
           <Typography type="headline" component="h2">
-            Jane Doe 
+            Jane Doe
           </Typography>
           <Typography component="p">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus, minus.
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+            Voluptatibus, minus.
           </Typography>
         </CardContent>
         <CardActions>
           <Button dense color="primary">
             Follow
           </Button>
-          <Button dense color="primary">
-            Learn More
+          <Button href="mailto:myotintaye00@gmail.com" dense color="primary">
+            Send Email
           </Button>
         </CardActions>
       </Card>
@@ -46,7 +47,7 @@ function FriendListItem(props) {
 }
 
 FriendListItem.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(FriendListItem);

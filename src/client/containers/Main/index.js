@@ -59,13 +59,14 @@ export default () => (
         {
           name: "description",
           content: "ReactQL starter kit app"
-
         }
       ]}
-      link={[{
-        href: "https://fonts.googleapis.com/icon?family=Material+Icons",
-        rel: "stylesheet"
-      }]}
+      link={[
+        {
+          href: "https://fonts.googleapis.com/icon?family=Material+Icons",
+          rel: "stylesheet"
+        }
+      ]}
     />
 
     <Switch>
@@ -77,13 +78,13 @@ export default () => (
     </Switch>
 
     {/* prettier-ignore */}
-    <ul>
+    {/* <ul>
       <li><Link to="/">Home</Link></li>
       <li><Link to="/page/about">About</Link></li>
       <li><Link to="/page/contact">Contact</Link></li>
       <li><Link to="/search">Search</Link></li>
       <li><Link to="/old/path">Redirect from /old/path &#8594; /new/path</Link></li>
-    </ul>
+    </ul> */}
     {/* 
     <div className={css.hello}>
       <img src={logo} alt="ReactQL" className={css.logo} />

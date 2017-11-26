@@ -79,6 +79,7 @@
     "apollo-server-koa": "^1.1.2",
     "boxen": "^1.2.1",
     "chalk": "^2.1.0",
+    "classnames": "^2.2.5",
     "graphql": "^0.11.3",
     "ip": "^1.1.5",
     "isomorphic-fetch": "^2.2.1",
