@@ -49,6 +49,7 @@ import { Page, WhenNotFound } from "src/client/routes";
 import Home from "src/client/containers/Home";
 import CreateUser from "src/client/containers/CreateUser"
 import SearchFriends from "src/client/containers/SearchFriends";
+import UserProfile from "src/client/containers/UserProfile";
 
 // ----------------------
 
@@ -74,6 +75,7 @@ export default () => (
       <Route path="/page/:name" component={Page} />
       <Route path="/createUser" component={CreateUser} />
       <Route path="/search" component={SearchFriends} />
+      <Route path="/userProfile/:userId" component={UserProfile} />
       <Redirect from="/old/path" to="/new/path" />
       <Route component={WhenNotFound} />
     </Switch>
@@ -85,6 +87,7 @@ export default () => (
       <li><Link to="/page/contact">Contact</Link></li>
       <li><Link to="/createUser">Create User</Link></li>
       <li><Link to="/search">Search</Link></li>
+      <li><Link to="/userProfile/:userId">Profile</Link></li>
       <li><Link to="/old/path">Redirect from /old/path &#8594; /new/path</Link></li>
     </ul>
     {/* 

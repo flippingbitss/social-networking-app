@@ -28,6 +28,7 @@ import message from './message.gql';
 // `react-apollo`'s `graphql` HOC/decorator and pass in the query that this
 // component requires.   Note: This is not to be confused with the `graphql`
 // lib, which is used on the server-side to initially define the schema
+
 @graphql(message)
 export default class GraphQLMessage extends React.PureComponent {
   static propTypes = {
@@ -60,6 +61,7 @@ export default class GraphQLMessage extends React.PureComponent {
     return (
       <div>
         <h2>Message from GraphQL server: <em>{messageText}</em></h2>
+        
         <h2>Currently loading?: {isLoading}</h2>
       </div>
     );
