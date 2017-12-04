@@ -1,0 +1,22 @@
+{
+  user(userId: "108") {
+    id,
+    firstName,
+    lastName,
+    age,
+    email,
+    about,
+    createdAt,
+    tags {
+      title
+    },
+    followers {
+      firstName,
+      lastName
+    },
+    following {
+      firstName,
+      lastName
+    }
+  }
+}
