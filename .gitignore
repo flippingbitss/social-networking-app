@@ -1,6 +1,9 @@
 # Meta
 **/.DS_Store
 
+# vSCode settings
+.vscode
+
 # Logs
 logs
 *.log
